@@ -1,6 +1,7 @@
 class PlacesController < ApplicationController
   before_action :set_place, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:destroy]
+  before_action :require_user_logged_in, only: [:index,:show,:edit]
 
 
   def index
