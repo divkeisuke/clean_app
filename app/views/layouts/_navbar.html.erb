@@ -1,0 +1,16 @@
+<header class="mb-4">
+    <nav class="navbar navbar-expand-sm navbar-primary" style="background-color:#e3f2fd;">
+        <a class="navbar-brand" href="/"><img src="">本日の掃除</a>
+        <div class="collapse navbar-collapse justify-content-around">
+            <ul class="navbar-nav">
+                <li class="nav-item"><%= link_to"場所一覧",places_path %></li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item"><%= link_to"モノ一覧",user_things_path %></li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item"><%= link_to 'ログアウト', logout_path, method: :delete %></li>
+            </ul>
+        </div>
+    </nav>
+</header>

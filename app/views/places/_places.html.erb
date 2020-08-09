@@ -1,0 +1,12 @@
+<div class="container">
+  <table class="table">
+      <% places.each do |place| %>
+      <tr>
+        <td><%= link_to place.name, place_path(place),class: "btn btn-outline-primary" %></td>
+        <td><%= link_to '名称変更', edit_place_path(place),class: "btn btn-outline-dark" %></td>
+        <td><%= link_to '削除', place, method: :delete, data: { confirm: '本当に削除しますか?' },class:"btn btn-outline-dark" %></td>
+      </tr>
+      <% end %>
+  </table>
+</div>
+<br>

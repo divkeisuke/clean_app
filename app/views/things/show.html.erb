@@ -1,0 +1,74 @@
+<div class="col-12 ml-3">
+    <div class="card">
+        <div class="card-header"><h3><%= @place.name %>の<%= @thing.name %>詳細</h3></div>
+        <%= form_with(model: @thing,url: place_thing_path, local: true) do |form| %>
+        <table class="table table-striped">
+            <tbody>
+                
+                <tr>
+                    <td>掃除完了</td>
+                    <td><div class="field">
+                          <%= form.hidden_field :clean_day, :value => @today %>
+                          <%= form.submit '掃除完了', class: 'btn btn-danger btn-block' %>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>状態</td>
+                    <td><%= hokori_parameter(@clean_progress_day,@clean_frequency) %></td>
+                </tr>
+                
+                <tr>
+                    <td>最後に掃除した日</td>
+                    <td><%= @thing.clean_day %></td>
+                </tr>
+                
+                <tr>
+                    <td>次の掃除まであと〇〇日</td>
+                    <td><%= @clean_limit.to_i %>日</td>
+                </tr>
+                
+                <tr>
+                    <td>掃除頻度</td>
+                    <td><%= @thing.clean_frequency %>日/１回</td>
+                </tr>
+                
+                <tr>
+                    <td>掃除グッズ1</td>
+                    <td><%= @thing.tool1 %></td>
+                </tr>
+                
+                <tr>
+                    <td>掃除グッズ2</td>
+                    <td><%= @thing.tool2 %></td>
+                </tr>
+                
+                <tr>
+                    <td>掃除グッズ3</td>
+                    <td><%= @thing.tool3 %></td>
+                </tr>
+                
+                <tr>
+                    <td>掃除グッズ4</td>
+                    <td><%= @thing.tool4 %></td>
+                </tr>
+                
+                <tr>
+                    <td>掃除グッズ5</td>
+                    <td><%= @thing.tool5 %></td>
+                </tr>
+                
+                <tr>
+                    <td>ワンポイントメモ</td>
+                    <td><%= @thing.remarks %></td>
+                </tr>
+                
+            </tbody>
+        </table>
+        <% end %>
+    </div>
+    <br>
+    
+</div>
+

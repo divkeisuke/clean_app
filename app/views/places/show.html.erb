@@ -1,0 +1,16 @@
+<h1><%= @place.name %>のモノ一覧</h1>
+
+<div class="container">
+  <table class="table">
+    <% @things.each do |thing| %>
+      <tr>
+        <td><%= link_to thing.name,thing_path(thing),class: "btn btn-outline-primary" %></td>
+        <td><%= link_to '編集', things_edit_place_path(thing),class: "btn btn-outline-dark" %></td>
+        <td><%= link_to '削除', thing_path(thing), method: :delete, data: { confirm: '本当に削除しますか?' },class:"btn btn-outline-dark" %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>  
+<br>
+
+<%= link_to '新しくモノを登録する', new_place_thing_path(@place),class: "btn btn-outline-success" %>
