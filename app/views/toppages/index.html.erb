@@ -1,5 +1,6 @@
+<%= stylesheet_link_tag "toppages_index", :media => "all" %>
 <% if logged_in? %>
-  <h1>本日の掃除するモノ一覧</h1>
+<h3>本日の掃除するモノ一覧</h3>
 <div class="container">
   <table class="table">
     <% @things.each do |thing| %>
@@ -17,7 +18,43 @@
   </table>
 </div>
 
-  <h1>その他のモノ一覧</h1>
+<h5>ホコリパラメーター:黄</h5>
+<div class="container">
+  <table class="table">
+    <% @things.each do |thing| %>
+      <tr>
+        <% @clean_limit = thing.clean_day + thing.clean_frequency - @today %>
+        <% @clean_progress_day = @today - thing.clean_day %>
+        <% if @clean_progress_day.to_i > thing.clean_frequency * 2/3 && @clean_progress_day.to_i < thing.clean_frequency %>
+          <td><%= link_to thing.name,place_thing_path(thing.place_id,thing),class: "btn btn-outline-primary" %></td>
+          <td><%= link_to '掃除完了！', place_thing_path(thing.place_id,thing,params: { thing: { clean_day: @today} }), method: :put,class:"btn btn-outline-primary" %></td>
+          <td>掃除まであと：<%= @clean_limit.to_i %>日</td>
+          <td>ホコリパラメーター：<button type="button" class="btn btn-warning"><i class="fas fa-battery-three-quarters"></i></button></td>
+        <% end %>
+        </tr>
+    <% end %>
+  </table>
+</div>
+
+<h5>ホコリパラメーター:黒</h5>
+<div class="container">
+  <table class="table">
+    <% @things.each do |thing| %>
+      <tr>
+        <% @clean_limit = thing.clean_day + thing.clean_frequency - @today %>
+        <% @clean_progress_day = @today - thing.clean_day %>
+        <% if @clean_progress_day.to_i >= thing.clean_frequency * 1/3 && @clean_progress_day <= thing.clean_frequency * 2/3 %>
+          <td><%= link_to thing.name,place_thing_path(thing.place_id,thing),class: "btn btn-outline-primary" %></td>
+          <td><%= link_to '掃除完了！', place_thing_path(thing.place_id,thing,params: { thing: { clean_day: @today} }), method: :put,class:"btn btn-outline-primary" %></td>
+          <td>掃除まであと：<%= @clean_limit.to_i %>日</td>
+          <td>ホコリパラメーター：<button type="button" class="btn btn-secondary"><i class="fas fa-battery-quarter"></i></button></td>
+        <% end %>
+        </tr>
+    <% end %>
+  </table>
+</div>
+
+<h5>ホコリパラメーター:青</h5>
 <div class="container">
   <table class="table">
     <% @things.each do |thing| %>
@@ -29,23 +66,13 @@
           <td><%= link_to '掃除完了！', place_thing_path(thing.place_id,thing,params: { thing: { clean_day: @today} }), method: :put,class:"btn btn-outline-primary" %></td>
           <td>掃除まであと：<%= @clean_limit.to_i %>日</td>
           <td>ホコリパラメーター：<button type="button" class="btn btn-primary"><i class="fas fa-battery-empty"></i></button></td>
-          <% elsif @clean_progress_day.to_i >= thing.clean_frequency * 1/3 && @clean_progress_day <= thing.clean_frequency * 2/3 %>
-          <td><%= link_to thing.name,place_thing_path(thing.place_id,thing),class: "btn btn-outline-primary" %></td>
-          <td><%= link_to '掃除完了！', place_thing_path(thing.place_id,thing,params: { thing: { clean_day: @today} }), method: :put,class:"btn btn-outline-primary" %></td>
-          <td>掃除まであと：<%= @clean_limit.to_i %>日</td>
-          <td>ホコリパラメーター：<button type="button" class="btn btn-secondary"><i class="fas fa-battery-quarter"></i></button></td>
-          <% elsif @clean_progress_day.to_i > thing.clean_frequency * 2/3 && @clean_progress_day.to_i < thing.clean_frequency %>
-          <td><%= link_to thing.name,place_thing_path(thing.place_id,thing),class: "btn btn-outline-primary" %></td>
-          <td><%= link_to '掃除完了！', place_thing_path(thing.place_id,thing,params: { thing: { clean_day: @today} }), method: :put,class:"btn btn-outline-primary" %></td>
-          <td>掃除まであと：<%= @clean_limit.to_i %>日</td>
-          <td>ホコリパラメーター：<button type="button" class="btn btn-warning"><i class="fas fa-battery-three-quarters"></i></button></td>
         <% end %>
-      </tr>
+        </tr>
     <% end %>
   </table>
 </div>
 <% else %>
-<div class="center jumbotron">
+<div class="center jumbotron" id="container">
   <div class="text-center">
     <h1>掃除管理アプリ</h1>
     <div class="row">
@@ -57,5 +84,5 @@
       </div>
     </div>
   </div>
-</div
+</div>
 <% end %>

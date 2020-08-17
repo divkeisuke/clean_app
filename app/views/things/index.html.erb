@@ -13,4 +13,6 @@
 </div>  
 <br>
 
-<%= link_to '新しくモノを登録する', new_place_thing_path(@place),class: "btn btn-outline-success" %>
+<%= link_to new_place_thing_path(@place),class: "btn btn-outline-success" do %>
+  <%= @place.name %>に新しくモノを登録する
+<% end %>
