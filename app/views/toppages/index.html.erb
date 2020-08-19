@@ -1,5 +1,15 @@
 <%= stylesheet_link_tag "toppages_index", :media => "all" %>
 <% if logged_in? %>
+<div class="card m-2">
+    <div class="card-header">
+        掃除名言
+    </div>
+    <div class="card-body">
+        <% @motivation.each do |motivation| %>
+          <%= motivation.word %>
+        <% end %>
+    </div>
+</div>
 <h3>本日の掃除するモノ一覧</h3>
 <div class="container">
   <table class="table">
@@ -18,7 +28,7 @@
   </table>
 </div>
 
-<h5>ホコリパラメーター:黄</h5>
+<h5>ホコリパラメーター:汚い</h5>
 <div class="container">
   <table class="table">
     <% @things.each do |thing| %>
@@ -36,7 +46,7 @@
   </table>
 </div>
 
-<h5>ホコリパラメーター:黒</h5>
+<h5>ホコリパラメーター:普通</h5>
 <div class="container">
   <table class="table">
     <% @things.each do |thing| %>
@@ -54,7 +64,7 @@
   </table>
 </div>
 
-<h5>ホコリパラメーター:青</h5>
+<h5>ホコリパラメーター:キレイ</h5>
 <div class="container">
   <table class="table">
     <% @things.each do |thing| %>
