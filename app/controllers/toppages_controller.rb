@@ -3,7 +3,8 @@ class ToppagesController < ApplicationController
     if logged_in?
       @today = Date.today
       @things = current_user.things
-      @motivation = Motivation.order("rand()").limit(1)
+      rand = Rails.env.production? ? "RANDOM()" : "rand()"
+      @motivation = Motivation.order(rand).limit(1)
     end
   end
 end
