@@ -1,0 +1,13 @@
+nav.navbar.navbar-expand-sm.navbar-light[style="background-color:#FFFFF0;"]
+  a.navbar-brand[href="/"]
+    | 本日の掃除
+  button.navbar-toggler[type="button" data-toggle="collapse" data-target="#nav-bar"]
+    span.navbar-toggler-icon
+  #nav-bar.collapse.navbar-collapse
+    ul.navbar-nav.w-100.nav-justified
+      li.nav-item.active
+        = link_to"場所一覧",places_path
+      li.nav-item
+        = link_to"モノ一覧",user_things_path
+      li.nav-item
+        = link_to 'ログアウト', logout_path, method: :delete
