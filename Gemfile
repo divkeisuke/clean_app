@@ -31,6 +31,8 @@ gem 'slim-rails'
 
 gem 'html2slim'
 
+gem 'rails-i18n'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

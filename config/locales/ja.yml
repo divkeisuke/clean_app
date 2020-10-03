@@ -1,0 +1,22 @@
+ja:
+  activerecord:
+    models:
+      motivation: モチベーション
+      place: 場所
+      thing: モノ
+      user: ユーザー
+    attributes:
+      motivation:
+        word: 掃除名言
+      place:
+        name: 場所
+      thing:
+        name: モノ
+        clean_day: 掃除を始める日
+        clean_frequency: 掃除頻度
+        remarks: ワンポイントメモ
+        tool1: 掃除道具１
+        tool2: 掃除道具２
+        tool3: 掃除道具３
+        tool4: 掃除道具４
+        tool5: 掃除道具５
