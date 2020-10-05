@@ -1,0 +1,5 @@
+document.querySelector("#thing-<%= @thing.id %>").style.display = 'none';
+
+var message = document.createElement('p');
+message.innerText = '<%= @thing.name %>を削除しました。';
+document.querySelector("table").insertAdjacentElement('beforebegin', message);

@@ -27,11 +27,11 @@ class PlacesController < ApplicationController
   def create
     @place = current_user.places.build(place_params)
     if @place.save
-      flash[:success] = '場所を追加しました。'
+      flash[:success] = "#{@place.name}を追加しました。"
       redirect_to places_url
     else
       @places = current_user.places.order(id: :desc)
-      flash.now[:danger] = '場所の追加に失敗しました。'
+      flash.now[:danger] = "#{@place.name}の追加に失敗しました。"
       render 'places/index'
     end
   end
@@ -40,10 +40,10 @@ class PlacesController < ApplicationController
   def update
 
     if @place.update(place_params)
-      flash[:success] = '場所の名称を変更しました'
+      flash[:success] = "#{@place.name}の名称を変更しました"
       redirect_to places_path
     else
-      flash.now[:danger] = '場所の名称は変更されませんでした'
+      flash.now[:danger] = "#{@place.name}の名称は変更されませんでした"
       render :edit
     end
   end
@@ -51,8 +51,6 @@ class PlacesController < ApplicationController
 
   def destroy
     @place.destroy
-    flash[:success] = '場所を削除しました。'
-    redirect_back(fallback_location: root_path)
   end
 
   private
