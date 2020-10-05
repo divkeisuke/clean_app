@@ -73,6 +73,6 @@ class ThingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def thing_params
-      params.require(:thing).permit(:user_id,:place_id, :name, :clean_day, :clean_frequency, :remarks, :tool1, :tool2, :tool3, :tool4, :tool5)
+      params.require(:thing).permit(:user_id,:place_id, :name, :clean_day, :clean_frequency, :remarks, :tool1, :tool2, :tool3, :tool4, :tool5, :image)
     end
 end

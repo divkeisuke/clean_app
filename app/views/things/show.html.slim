@@ -68,4 +68,9 @@
               | ワンポイントメモ
             td
               = simple_format(h(@thing.remarks))
+          tr
+            td
+              | 画像
+            td
+              = image_tag @thing.image, :size =>'900x600' if @thing.image.attached? 
   br

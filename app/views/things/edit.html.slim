@@ -74,8 +74,12 @@
             td
               .field
                 = form.text_area :remarks,class: "form-control"
-      .field
-        = form.hidden_field :clean_day,:value => @today
+          tr
+            td
+              | 画像
+            td
+              .field
+                = form.file_field :image,class: "form-control"
     br
     .action
       = form.submit "登録する", class: "btn btn-outline-success btn-block"
