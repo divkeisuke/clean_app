@@ -1,0 +1,10 @@
+h1
+  = @place.name
+  | の名称変更
+br
+= form_with(model: @place,local: true) do |form|
+  .row
+    .col-sm-6
+      = form.text_field :name,class: "form-control"
+    .col-sm-offset-2.col-sm-1
+      = form.submit"変更",class: "btn btn-primary btn-block"

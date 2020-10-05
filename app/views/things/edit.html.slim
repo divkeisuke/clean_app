@@ -1,0 +1,86 @@
+= form_with(model: @thing,url: place_thing_path, local: true) do |form|
+  - if @thing.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@thing.errors.count, "error")
+        |  prohibited this thing from being saved:
+      ul
+        - @thing.errors.full_messages.each do |message|
+          li
+            = message
+  .col-12.ml-3
+    .card
+      .card-header
+        h3
+          = @place.name
+          | の
+          = @thing.name
+          | 編集
+      table.table.table-striped
+        tbody
+          tr
+            td
+              | モノの名前
+            td
+              .field
+                = form.text_field :name,class: "form-control"
+          tr
+            td
+              | 最後に掃除をした日
+            td
+              .field
+                = form.date_field :clean_day
+          tr
+            td
+              | 掃除頻度
+            td
+              .field
+                = form.number_field :clean_frequency
+                p
+                  | 日/一回
+          tr
+            td
+              | 掃除グッズ1
+            td
+              .field
+                = form.text_field :tool1,class: "form-control"
+          tr
+            td
+              | 掃除グッズ2
+            td
+              .field
+                = form.text_field :tool2,class: "form-control"
+          tr
+            td
+              | 掃除グッズ3
+            td
+              .field
+                = form.text_field :tool3,class: "form-control"
+          tr
+            td
+              | 掃除グッズ4
+            td
+              .field
+                = form.text_field :tool4,class: "form-control"
+          tr
+            td
+              | 掃除グッズ5
+            td
+              .field
+                = form.text_field :tool5,class: "form-control"
+          tr
+            td
+              | ワンポイントメモ
+            td
+              .field
+                = form.text_area :remarks,class: "form-control"
+          tr
+            td
+              | 画像
+            td
+              .field
+                = form.file_field :image,class: "form-control"
+    br
+    .action
+      = form.submit "登録する", class: "btn btn-outline-success btn-block"
+br

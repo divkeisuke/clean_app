@@ -1,0 +1,30 @@
+= form_with(model: thing, local: true) do |form|
+  - if thing.errors.any?
+    #error_explanation
+      h2
+        = pluralize(thing.errors.count, "error")
+        |  prohibited this thing from being saved:
+      ul
+        - thing.errors.full_messages.each do |message|
+          li
+            = message
+  .field
+    = form.label :name
+    = form.text_field :name
+  .field
+    = form.label :clean_day
+    = form.date_select :clean_day
+  .field
+    = form.label :clean_frequency
+    = form.number_field :clean_frequency
+  .field
+    = form.label :remarks
+    = form.text_area :remarks
+  .field
+    = form.label :user
+    = form.text_field :user
+  .field
+    = form.label :place
+    = form.text_field :place
+  .actions
+    = form.submit

@@ -1,0 +1,105 @@
+= stylesheet_link_tag "toppages_index", :media => "all"
+- if logged_in?
+  .card.m-2
+    .card-header
+      |  掃除名言 
+    .card-body
+      - @motivation.each do |motivation|
+        = motivation.word
+  h3
+    | 本日の掃除するモノ一覧
+  .container
+    table.table
+      - @things.each do |thing|
+        tr
+          - @clean_limit = thing.clean_day + thing.clean_frequency - @today
+          - if @clean_limit <= 0
+            td
+              = link_to thing.name,place_thing_path(thing.place_id,thing),class: "btn btn-outline-primary"
+            td
+              = link_to '掃除完了！', place_thing_path(thing.place_id,thing,params: { thing: { clean_day: @today} }), method: :put,class:"btn btn-outline-primary"
+            td
+              = link_to '見送る', place_thing_path(thing.place_id,thing,params: { thing: { clean_day: @today} }), method: :put,class:"btn btn-outline-primary"
+            td
+              | 掃除予定日より
+              = @clean_limit.to_i * -1
+              | 日経過
+            td
+              | ホコリパラメーター：
+              button.btn.btn-danger[type="button"]
+                i.fas.fa-battery-full
+  h5
+    | ホコリパラメーター:汚い
+  .container
+    table.table
+      - @things.each do |thing|
+        tr
+          - @clean_limit = thing.clean_day + thing.clean_frequency - @today
+          - @clean_progress_day = @today - thing.clean_day
+          - if @clean_progress_day.to_i > thing.clean_frequency * 2/3 && @clean_progress_day.to_i < thing.clean_frequency
+            td
+              = link_to thing.name,place_thing_path(thing.place_id,thing),class: "btn btn-outline-primary"
+            td
+              = link_to '掃除完了！', place_thing_path(thing.place_id,thing,params: { thing: { clean_day: @today} }), method: :put,class:"btn btn-outline-primary"
+            td
+              | 掃除まであと：
+              = @clean_limit.to_i
+              | 日
+            td
+              | ホコリパラメーター：
+              button.btn.btn-warning[type="button"]
+                i.fas.fa-battery-three-quarters
+  h5
+    | ホコリパラメーター:普通
+  .container
+    table.table
+      - @things.each do |thing|
+        tr
+          - @clean_limit = thing.clean_day + thing.clean_frequency - @today
+          - @clean_progress_day = @today - thing.clean_day
+          - if @clean_progress_day.to_i >= thing.clean_frequency * 1/3 && @clean_progress_day <= thing.clean_frequency * 2/3
+            td
+              = link_to thing.name,place_thing_path(thing.place_id,thing),class: "btn btn-outline-primary"
+            td
+              = link_to '掃除完了！', place_thing_path(thing.place_id,thing,params: { thing: { clean_day: @today} }), method: :put,class:"btn btn-outline-primary"
+            td
+              | 掃除まであと：
+              = @clean_limit.to_i
+              | 日
+            td
+              | ホコリパラメーター：
+              button.btn.btn-secondary[type="button"]
+                i.fas.fa-battery-quarter
+  h5
+    | ホコリパラメーター:キレイ
+  .container
+    table.table
+      - @things.each do |thing|
+        tr
+          - @clean_limit = thing.clean_day + thing.clean_frequency - @today
+          - @clean_progress_day = @today - thing.clean_day
+          - if @clean_progress_day.to_i < thing.clean_frequency * 1/3
+            td
+              = link_to thing.name,place_thing_path(thing.place_id,thing),class: "btn btn-outline-primary"
+            td
+              = link_to '掃除完了！', place_thing_path(thing.place_id,thing,params: { thing: { clean_day: @today} }), method: :put,class:"btn btn-outline-primary"
+            td
+              | 掃除まであと：
+              = @clean_limit.to_i
+              | 日
+            td
+              | ホコリパラメーター：
+              button.btn.btn-primary[type="button"]
+                i.fas.fa-battery-empty
+- else
+  #container.center.jumbotron
+    .text-center
+      h1
+        | 掃除管理アプリ
+      .row
+        .col-sm-6
+          h2
+            = link_to 'ログイン', login_path, class: 'btn btn-lg btn-primary'
+        .col-sm-6
+          h2
+            = link_to '新規登録', signup_path, class: 'btn btn-lg btn-info'
