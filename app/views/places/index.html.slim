@@ -3,13 +3,13 @@ h1
 .container
   table.table
     - @places.each do |place|
-      tr
+      tr id="place-#{place.id}"
         td
           = link_to place.name, place_things_path(place),class: "btn btn-outline-primary"
         td
           = link_to '名称変更', edit_place_path(place),class: "btn btn-outline-dark"
         td
-          = link_to '削除', place, method: :delete, data: { confirm: '本当に削除しますか?' },class:"btn btn-outline-dark"
+          = link_to '削除', place, method: :delete, remote: true, data: { confirm: '本当に削除しますか?' },class:"btn btn-outline-dark delete"
 br
 = form_with(model: @place,local: true) do |f|
   = render 'layouts/error_messages', model: f.object

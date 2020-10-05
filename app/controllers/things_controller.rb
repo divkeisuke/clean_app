@@ -39,10 +39,10 @@ class ThingsController < ApplicationController
     @thing.user_id = current_user.id
     @place = current_user.places.find(params[:place_id])
     if @thing.save
-      flash[:success] = 'モノを追加しました。'
+      flash[:success] = "#{@thing.name}を追加しました。"
       redirect_to place_things_path
     else
-      flash.now[:danger] = 'モノの追加に失敗しました。'
+      flash.now[:danger] = "#{@thing.name}の追加に失敗しました。"
       render "new"
     end
   end
@@ -50,10 +50,10 @@ class ThingsController < ApplicationController
 
   def update
     if @thing.update(thing_params)
-      flash[:success] = 'モノを編集しました'
-      redirect_to root_path
+      flash[:success] = "#{@thing.name}を編集しました"
+      redirect_to place_things_path
     else
-      flash.now[:danger] = 'モノを編集できませんでした'
+      flash.now[:danger] = "#{@thing.name}を編集できませんでした"
       render :edit
     end
   end
@@ -61,8 +61,6 @@ class ThingsController < ApplicationController
 
   def destroy
     @thing.destroy
-    flash[:success] = '場所を削除しました。'
-    redirect_back(fallback_location: root_path)
   end
 
   private

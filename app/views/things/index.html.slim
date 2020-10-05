@@ -4,13 +4,14 @@ h1
 .container
   table.table
     - @things.each do |thing|
-      tr
+      tr id="thing-#{thing.id}"
         td
           = link_to thing.name,place_thing_path(@place,thing),class: "btn btn-outline-primary"
         td
           = link_to '編集', edit_place_thing_path(@place,thing),class: "btn btn-outline-dark"
         td
-          = link_to '削除', place_thing_path(@place,thing), method: :delete, data: { confirm: '本当に削除しますか?' },class:"btn btn-outline-dark"
+          = link_to '削除', place_thing_path(@place,thing), method: :delete, remote: true,
+          data: { confirm: '本当に削除しますか?' },class:"btn btn-outline-dark delete"
 br
 = link_to new_place_thing_path(@place),class: "btn btn-outline-success" do
   = @place.name
