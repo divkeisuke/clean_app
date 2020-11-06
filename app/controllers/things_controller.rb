@@ -51,7 +51,7 @@ class ThingsController < ApplicationController
   def update
     if @thing.update(thing_params)
       flash[:success] = "#{@thing.name}を編集しました"
-      redirect_to place_things_path
+      redirect_to root_path
     else
       flash.now[:danger] = "#{@thing.name}を編集できませんでした"
       render :edit

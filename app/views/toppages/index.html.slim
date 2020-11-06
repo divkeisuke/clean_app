@@ -2,7 +2,7 @@
 - if logged_in?
   .card.m-2
     .card-header
-      |  掃除名言 
+      |  掃除格言 
     .card-body
       - @motivation.each do |motivation|
         = motivation.word
@@ -12,7 +12,7 @@
     table.table
       - @things.each do |thing|
         tr
-          - @clean_limit = thing.clean_day + thing.clean_frequency - @today
+          - @clean_limit = thing.clean_day + thing.clean_frequency.rationalize - @today
           - if @clean_limit <= 0
             td
               = link_to thing.name,place_thing_path(thing.place_id,thing),class: "btn btn-outline-primary"
@@ -36,7 +36,7 @@
         tr
           - @clean_limit = thing.clean_day + thing.clean_frequency - @today
           - @clean_progress_day = @today - thing.clean_day
-          - if @clean_progress_day.to_i > thing.clean_frequency * 2/3 && @clean_progress_day.to_i < thing.clean_frequency
+          - if @clean_progress_day.to_i > thing.clean_frequency.rationalize * 2/3 && @clean_progress_day.to_i < thing.clean_frequency.rationalize
             td
               = link_to thing.name,place_thing_path(thing.place_id,thing),class: "btn btn-outline-primary"
             td
@@ -57,7 +57,7 @@
         tr
           - @clean_limit = thing.clean_day + thing.clean_frequency - @today
           - @clean_progress_day = @today - thing.clean_day
-          - if @clean_progress_day.to_i >= thing.clean_frequency * 1/3 && @clean_progress_day <= thing.clean_frequency * 2/3
+          - if @clean_progress_day.to_i >= thing.clean_frequency.rationalize * 1/3 && @clean_progress_day <= thing.clean_frequency.rationalize * 2/3
             td
               = link_to thing.name,place_thing_path(thing.place_id,thing),class: "btn btn-outline-primary"
             td
@@ -78,7 +78,7 @@
         tr
           - @clean_limit = thing.clean_day + thing.clean_frequency - @today
           - @clean_progress_day = @today - thing.clean_day
-          - if @clean_progress_day.to_i < thing.clean_frequency * 1/3
+          - if @clean_progress_day.to_i < thing.clean_frequency.rationalize * 1/3
             td
               = link_to thing.name,place_thing_path(thing.place_id,thing),class: "btn btn-outline-primary"
             td
