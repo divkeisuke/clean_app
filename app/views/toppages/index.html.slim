@@ -95,11 +95,19 @@
   #container.center.jumbotron
     .text-center
       h1
+      span.title
         | 掃除管理アプリ
       .row
         .col-sm-6
-          h2
             = link_to 'ログイン', login_path, class: 'btn btn-lg btn-primary'
         .col-sm-6
-          h2
             = link_to '新規登録', signup_path, class: 'btn btn-lg btn-info'
+      h1#test
+      span.word-back
+        | テスト用ユーザー
+      h2.test
+      span.word-back
+        |メールアドレス：test@test.com
+      h2.test
+      span.word-back
+        |パスワード：test
