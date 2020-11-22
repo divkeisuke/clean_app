@@ -1,0 +1,5 @@
+one:
+  id: 1
+  name: タロウ
+  email: test@test.jp
+  password_digest: password
