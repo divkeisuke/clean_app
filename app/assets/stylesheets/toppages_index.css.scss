@@ -1,6 +1,20 @@
 #container{
-    color:blue;
-    padding-bottom:400px;
     background-image: url("1211110.jpg");
-    background-size:50% auto;
+    background-size:70px 70px;
+}
+.title{
+    color:blue;
+    background-color:yellow;
+    font-size:40px;
+}
+.row{
+    margin-top:80px;
+}
+#test{
+    margin-top:100px;
+}
+.word-back{
+    background-color:yellow;
+    color:red;
+    font-size:40px;
 }
